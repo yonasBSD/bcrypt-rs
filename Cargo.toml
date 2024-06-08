@@ -23,6 +23,7 @@ getrandom = { version = "0.2", default-features = false, optional = true }
 base64 = { version = "0.22", default-features = false }
 zeroize = { version = "1.5.4", optional = true }
 subtle = { version = "2.4.1", default-features = false }
+clap = { version = "*", features = ["color", "error-context", "help", "std", "suggestions", "usage", "derive"] }
 
 [dev-dependencies]
 # no default features avoid pulling in log

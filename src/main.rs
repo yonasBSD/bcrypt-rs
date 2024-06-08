@@ -1,17 +1,26 @@
 extern crate bcrypt;
 
 use bcrypt::{hash, verify, DEFAULT_COST};
+use clap::Parser;
+
+/// Simple program to hash password using bcrypt
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Args {
+    /// Number of times to greet
+    #[arg(short, long, default_value_t = DEFAULT_COST)]
+    cost: u32,
+
+    /// Password
+    #[arg(required=true)]
+    password: String,
+}
 
 fn main() {
-    let args: Vec<String> = std::env::args().collect();
+    let args = Args::parse();
 
-    if args.len() < 2 {
-        eprintln!("Missing password argument.");
-        std::process::exit(1);
-    }
-
-    let hashed = hash(args[1].clone(), DEFAULT_COST).unwrap();
-    let valid = verify(args[1].clone(), &hashed).unwrap();
+    let hashed = hash(args.password.clone(), args.cost).unwrap();
+    let valid = verify(args.password.clone(), &hashed).unwrap();
 
     if !valid {
         eprintln!("Invalid hash");
