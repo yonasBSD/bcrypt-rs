@@ -12,15 +12,23 @@ struct Args {
     cost: u32,
 
     /// Password
-    #[arg(required=true)]
+    #[arg(required = false, default_value = "")]
     password: String,
 }
 
 fn main() {
     let args = Args::parse();
+    let mut password = args.password;
 
-    let hashed = hash(args.password.clone(), args.cost).unwrap();
-    let valid = verify(args.password.clone(), &hashed).unwrap();
+    if password.len() == 0 {
+        use std::io::{self, BufRead};
+
+        let stdin = io::stdin();
+        stdin.lock().read_line(&mut password).unwrap();
+    }
+
+    let hashed = hash(password.clone(), args.cost).unwrap();
+    let valid = verify(password.clone(), &hashed).unwrap();
 
     if !valid {
         eprintln!("Invalid hash");
