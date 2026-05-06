@@ -60,6 +60,7 @@ for new projects.
 
 ## Changelog
 
+* 0.19.1: bump blowfish dep
 * 0.19.0: update getrandom and remove some allocations
 * 0.18.0: Simplify error kinds, bump edition to 2024
 * 0.17.1: implements `Display` for HashParts instead of `ToString`
