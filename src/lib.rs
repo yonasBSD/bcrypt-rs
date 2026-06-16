@@ -771,9 +771,6 @@ mod tests {
         // Direct parser-level test of the invariant: any non-ASCII byte
         // anywhere in a 60-byte hash string is rejected up front.
         let hash = "$2b$04$aaaaaaaaaaaaaaaaaaaaa£aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-        assert!(matches!(
-            split_hash(hash),
-            Err(BcryptError::InvalidHash(_))
-        ));
+        assert!(matches!(split_hash(hash), Err(BcryptError::InvalidHash(_))));
     }
 }

@@ -60,6 +60,7 @@ for new projects.
 
 ## Changelog
 
+* 0.19.2: ensure hashes are ascii when decoding
 * 0.19.1: bump blowfish dep
 * 0.19.0: update getrandom and remove some allocations
 * 0.18.0: Simplify error kinds, bump edition to 2024
